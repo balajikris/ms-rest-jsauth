@@ -1,0 +1,44 @@
+{
+  "name": "ms-rest-jsauth",
+  "author": {
+    "name": "Microsoft Corporation",
+    "email": "azsdkteam@microsoft.com",
+    "url": "https://github.com/Azure/azure-sdk-for-node"
+  },
+  "version": "0.1.0",
+  "description": "Runtime used by Javascript client libraries for Azure",
+  "tags": [
+    "microsoft",
+    "autorest",
+    "clientruntime"
+  ],
+  "keywords": [
+    "microsoft",
+    "autorest",
+    "clientruntime"
+  ],
+  "main": "./lib/AuthenticationManager.ts",
+  "license": "MIT",
+  "dependencies": {
+    "adal-angular":"^1.0.14",
+    "@types/adal": "^1.0.27"
+  },
+  "devDependencies": {
+    "ts-loader": "^2.0.3",
+    "tslint": "^5.2.0",
+    "typescript": "^2.3.2"
+  },
+  "homepage": "https://github.com/Azure/azure-sdk-for-node/",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Azure/azure-sdk-for-node.git"
+  },
+  "bugs": {
+    "url": "http://github.com/Azure/azure-sdk-for-node/issues"
+  },
+  "scripts": {
+    "test": "npm install && npm -s run-script unit",
+    "unit": "mocha -t 50000 dist/test",
+    "build": "webpack"
+  }
+}
