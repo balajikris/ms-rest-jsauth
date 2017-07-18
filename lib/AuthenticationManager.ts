@@ -1,25 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-/// <reference path="../node_modules/@types/adal/index.d.ts" />
+const adal = require("adal-angular");
 
 import { IAuthenticationManager } from "./IAuthenticationManager";
 
 export class AuthenticationManager implements IAuthenticationManager {
 
   private readonly authContext: adal.AuthenticationContext;
-  private readonly loggedIn: boolean;
 
   public constructor(private readonly config: adal.Config) {
-    this.authContext = new AuthenticationContext(config);
-
-    const loggedInUserInfo = this.authContext.getCachedUser();
-
-    if (!loggedInUserInfo) {
-      this.authContext.login();
-    } else {
-      this.loggedIn = true;
-    }
+    this.authContext = new adal(config);
   }
 
   login(): void {
