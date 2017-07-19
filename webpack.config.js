@@ -2,7 +2,7 @@ module.exports = {
   entry: './sample.ts',
   output: {
     filename: 'bundle.js',
-    path: __dirname + "/dist",
+    path: __dirname + "/dist/sample/",
     libraryTarget: 'var',
     library: 'className'
   },
