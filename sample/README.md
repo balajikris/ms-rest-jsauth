@@ -1,11 +1,14 @@
 # How to build and run sample
 
+**prerequisite:** register your web application in AAD, edit its manifest and set `"oauth2AllowImplicitFlow": true`. Note down the app's clientId, tenant and reply url.
+
 1. cd to sample\server
-1. tsc -p tsconfig.server.json (this should output server.js to dist\sample)
+1. edit server.ts to make server listen at url and port that matches app's reply url and homepage
+1. tsc -p tsconfig.server.json (this should output server.js to &lt;project-root&gt;\dist\sample)
 1. cd to sample\client
-1. webpack (this should output bundle.js to dist\sample)
-1. cd to dist\sample
+1. edit sample.ts and update the clientId and tenant information
+1. webpack (this should output bundle.js to &lt;project-root&gt;\dist\sample)
+1. cd to &lt;project-root&gt;\dist\sample
 1. node .\server.js to start server
-1. open browser, navigate to [localhost:44326](http://localhost:44326) where the server is listening by default
-   * Note that this url has to match verbatim, for e.g: it cannot be 127.0.0.1:44326. This has to match the app's configuration in Active Directory.
+1. open browser, navigate to the URL where the server is listening (as configured in step 2)
 1. follow adal auth flow to complete authentication.
