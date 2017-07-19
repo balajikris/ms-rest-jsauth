@@ -74,8 +74,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // scrub this.
 const config = {
-    clientId: "8fb9db85-09d0-4e4f-a030-c9a51e2d14eb",
-    tenant: "72f988bf-86f1-41af-91ab-2d7cd011db47"
+    clientId: "Fill in client ID",
+    tenant: "Fill in tenant ID"
 };
 const authManager = new __WEBPACK_IMPORTED_MODULE_0__lib_AuthenticationManager__["a" /* AuthenticationManager */](config);
 authManager.login();
