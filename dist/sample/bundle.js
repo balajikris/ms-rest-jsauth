@@ -75,7 +75,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // scrub this.
 const config = {
     clientId: "Fill in client ID",
-    tenant: "Fill in tenant ID"
+    tenant: "Fill in tenant ID",
+    popUp: false
 };
 const authManager = new __WEBPACK_IMPORTED_MODULE_0__lib_AuthenticationManager__["a" /* AuthenticationManager */](config);
 authManager.login();

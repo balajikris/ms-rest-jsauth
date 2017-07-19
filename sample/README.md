@@ -6,7 +6,8 @@
 1. edit server.ts to make server listen at url and port that matches app's reply url and homepage
 1. tsc -p tsconfig.server.json (this should output server.js to &lt;project-root&gt;\dist\sample)
 1. cd sample\client
-1. edit sample.ts and update the clientId and tenant information
+1. edit sample.ts and update the clientId and tenant information in config
+1. _[optional]:_ change `popUp: true`, if you would like a pop-up instead of main page being redirected for authentication.
 1. webpack (this should output bundle.js to &lt;project-root&gt;\dist\sample)
 1. cd &lt;project-root&gt;\dist\sample
 1. node .\server.js to start server
