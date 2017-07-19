@@ -1,9 +1,9 @@
-var http = require("http");
-var fs = require("fs");
-var hostname = "127.0.0.1";
-var port = 44326;
-var server = http.createServer(function (request, response) {
-    var filePath = "." + request.url;
+const http = require("http");
+const fs = require("fs");
+const hostname = "127.0.0.1";
+const port = 44326;
+const server = http.createServer((request, response) => {
+    let filePath = "." + request.url;
     if (filePath === "./")
         filePath = "./index.html";
     fs.access(filePath, fs.constants.R_OK, function (err) {
@@ -25,6 +25,7 @@ var server = http.createServer(function (request, response) {
         }
     });
 });
-server.listen(port, hostname, function () {
-    console.log("Server running at http://" + hostname + ":" + port + "/");
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
 });
+//# sourceMappingURL=server.js.map

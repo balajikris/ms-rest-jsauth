@@ -1,4 +1,4 @@
-import { AuthenticationManager } from "./lib/AuthenticationManager";
+import { AuthenticationManager } from "../../lib/AuthenticationManager";
 
 // scrub this.
 const config: adal.Config = {

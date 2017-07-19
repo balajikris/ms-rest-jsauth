@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "es2015",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "preserveConstEnums": true,
         "sourceMap": true,
         "newLine": "LF",
@@ -11,7 +11,7 @@
         "noImplicitThis": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "outDir": "dist/lib",
+        "outDir": "../../dist/sample/",
         "declaration": false,
         "allowJs": true,
         "lib": [
@@ -25,7 +25,7 @@
         "node_modules"
     ],
     "include": [
-        "lib/**/*.ts",
-        "test/**/*.ts"
+        "../../lib/**/*.ts",
+        "sample.ts"
     ]
 }
