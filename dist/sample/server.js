@@ -1,26 +1,29 @@
 const http = require("http");
 const fs = require("fs");
-const hostname = "127.0.0.1";
-const port = 44326;
+const url = require("url");
+const hostname = "localhost";
+const port = 8080;
 const server = http.createServer((request, response) => {
-    let filePath = "." + request.url;
-    if (filePath === "./")
-        filePath = "./index.html";
+    let pathName = url.parse(request.url).pathname;
+    let query  = url.parse(request.url).query;
+    let filePath = "." + pathName;
     fs.access(filePath, fs.constants.R_OK, function (err) {
         if (!err) {
             fs.readFile(filePath, function (error, content) {
                 if (error) {
                     response.writeHead(500);
+                    response.write(JSON.stringify(error));
                     response.end();
                 }
                 else {
-                    response.writeHead(200, { "Content-Type": "text/html" });
+                    response.writeHead(200);
                     response.end(content, "utf-8");
                 }
             });
         }
         else {
             response.writeHead(404);
+            response.write(JSON.stringify(err));
             response.end();
         }
     });
@@ -28,4 +31,3 @@ const server = http.createServer((request, response) => {
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
-//# sourceMappingURL=server.js.map
