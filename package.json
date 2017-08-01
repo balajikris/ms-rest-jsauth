@@ -17,7 +17,8 @@
     "autorest",
     "clientruntime"
   ],
-  "main": "./lib/AuthenticationManager.ts",
+  "main": "./dist/lib/AuthenticationManager.js",
+  "typings": "./typings/AuthenticationManager.d.ts",
   "license": "MIT",
   "dependencies": {
     "adal-angular": "^1.0.14",

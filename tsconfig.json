@@ -12,8 +12,9 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "outDir": "dist/lib",
-        "declaration": false,
-        "allowJs": true,
+        "declaration": true,
+        "declarationDir": "./typings",
+        "allowJs": false,
         "lib": [
             "dom",
             "es2015",
