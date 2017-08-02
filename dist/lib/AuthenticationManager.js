@@ -23,7 +23,7 @@ export class AuthenticationManager {
         this.authContext.handleWindowCallback();
     }
     getCachedUser() {
-        this.authContext.getCachedUser();
+        return this.authContext.getCachedUser();
     }
 }
 //# sourceMappingURL=AuthenticationManager.js.map

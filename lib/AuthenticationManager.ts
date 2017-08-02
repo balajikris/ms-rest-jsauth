@@ -32,6 +32,6 @@ export class AuthenticationManager implements IAuthenticationManager {
     this.authContext.handleWindowCallback();
   }
   getCachedUser() {
-    this.authContext.getCachedUser();
+    return this.authContext.getCachedUser();
   }
 }
