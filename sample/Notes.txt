@@ -19,6 +19,10 @@ without this, calling getToken() will simply fail saying "authentication require
 
 4. ensure browser does not block scripts or cookies.
 
+5. use https://jwt.io/ to crack open the token and explore its attributes. Mainly look for the token audience. The audience should be the resource
+you will be querying against after being authenticated. it is management.azure.com for azure management, graph.windows.net for ADgraph and so on.
+you cannot use a token issued for audience-A to query against audience-B.
+
 Errors and debugging:
 
 1. Silent sign-in was sent but no user was signed in.
