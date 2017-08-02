@@ -1,4 +1,4 @@
 export interface IAuthenticationManager {
-    getToken(): Promise<any>;
+    getToken(resource: string): Promise<any>;
     login(): void;
 }

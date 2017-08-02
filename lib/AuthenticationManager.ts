@@ -9,7 +9,7 @@ export class AuthenticationManager implements IAuthenticationManager {
 
   private readonly authContext: adal.AuthenticationContext;
 
-  public constructor(private readonly config: adal.Config) {
+  public constructor(config: adal.Config) {
     this.authContext = new adal(config);
   }
 
@@ -17,10 +17,10 @@ export class AuthenticationManager implements IAuthenticationManager {
     this.authContext.login();
   }
 
-  getToken(): Promise<string> {
+  getToken(resource = "https://management.azure.com/"): Promise<string> {
     return new Promise<string>((resolve, reject) => {
       // adal has inbuilt smarts to acquire token from the cache if not expired. Otherwise sends request to AAD to obtain a new token
-      this.authContext.acquireToken(this.config.resource, (error, token) => {
+      this.authContext.acquireToken(resource, (error, token) => {
         if (error || !token) {
           return reject(error);
         }
