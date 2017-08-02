@@ -6,4 +6,6 @@ export declare class AuthenticationManager implements IAuthenticationManager {
     constructor(config: adal.Config);
     login(): void;
     getToken(): Promise<string>;
+    handleWindowCallback(): void;
+    getCachedUser(): void;
 }
