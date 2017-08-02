@@ -21,12 +21,17 @@ export class AuthenticationManager implements IAuthenticationManager {
     return new Promise<string>((resolve, reject) => {
       // adal has inbuilt smarts to acquire token from the cache if not expired. Otherwise sends request to AAD to obtain a new token
       this.authContext.acquireToken(this.config.resource, (error, token) => {
-          if (error || !token) {
-            return reject(error);
-          }
-          return resolve(token);
-        });
+        if (error || !token) {
+          return reject(error);
+        }
+        return resolve(token);
+      });
     });
   }
-
+  handleWindowCallback() {
+    this.authContext.handleWindowCallback();
+  }
+  getCachedUser() {
+    this.authContext.getCachedUser();
+  }
 }

@@ -20,5 +20,11 @@ export class AuthenticationManager {
             });
         });
     }
+    handleWindowCallback() {
+        this.authContext.handleWindowCallback();
+    }
+    getCachedUser() {
+        this.authContext.getCachedUser();
+    }
 }
 //# sourceMappingURL=AuthenticationManager.js.map
