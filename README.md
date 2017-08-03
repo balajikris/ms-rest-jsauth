@@ -11,3 +11,5 @@ The intent of this project is to bundle authentication functionality into Azure 
 2. Start the server - `npm start`
 3. Open `http://localhost:8080/login.html`
 4. After successful login `http://localhost:8080/index.html`
+
+#### You may find some of our [learnings](./sample/server/Notes.md) helpful.
