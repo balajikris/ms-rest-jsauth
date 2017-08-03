@@ -3,7 +3,7 @@
 
 import { authManager } from "./authConstants";
 
-const subscriptionId = "00977cdb-163f-435f-9c32-39ec8ae61f4d";
+const subscriptionId = "<your-subscription-id>";
 authManager.getToken().then((t) => {
   let req: RequestInit = {
     method: "GET",

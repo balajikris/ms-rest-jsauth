@@ -74,8 +74,8 @@ var className =
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 const config = {
-    clientId: "4e577d28-b99d-4b38-829a-1adc38b0fab5",
-    tenant: "72f988bf-86f1-41af-91ab-2d7cd011db47",
+    clientId: "<clientId of your app>",
+    tenant: "<tenantId of your app>",
     popUp: false,
     cacheLocation: "localStorage",
     redirectUri: "http://localhost:8080/login.html"
@@ -1813,7 +1813,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-const subscriptionId = "00977cdb-163f-435f-9c32-39ec8ae61f4d";
+const subscriptionId = "<your-subscription-id>";
 __WEBPACK_IMPORTED_MODULE_0__authConstants__["a" /* authManager */].getToken().then((t) => {
     let req = {
         method: "GET",

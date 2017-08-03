@@ -74,8 +74,8 @@ var className =
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 const config = {
-    clientId: "4e577d28-b99d-4b38-829a-1adc38b0fab5",
-    tenant: "72f988bf-86f1-41af-91ab-2d7cd011db47",
+    clientId: "<clientId of your app>",
+    tenant: "<tenantId of your app>",
     popUp: false,
     cacheLocation: "localStorage",
     redirectUri: "http://localhost:8080/login.html"
