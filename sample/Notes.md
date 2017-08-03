@@ -13,7 +13,7 @@ const config: adal.Config = {
 };
 ```
 
-2. The page that is loaded after adal-js redirects to after authentication needs to call handleWindowCallback() to complete the handshake.
+2. The page that is loaded after adal-js redirects to after authentication, needs to call handleWindowCallback(), to complete the handshake.
 Until this is done, authentication is not completed.
 
 3. You must call adal-angular's getCachedUser() after authentication flow is complete, to force adal to create the user object and save it.
