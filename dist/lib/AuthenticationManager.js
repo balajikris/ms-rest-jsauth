@@ -36,5 +36,20 @@ export class AuthenticationManager {
             });
         });
     }
+    /**
+     * A simple wrapper around adal-js' handleWindowCallback() method
+     * Handles redirection after login operation. Gets access token from url and saves token to the (local/session) storage
+     * or saves error in case unsuccessful login.
+     */
+    handleWindowCallback() {
+        this.authContext.handleWindowCallback();
+        const user = this.authContext.getCachedUser();
+        if (user && user.userName) {
+            document.write("login successful");
+        }
+        else {
+            document.write("Could not find the user. Either this method was called before login or login was not successful.");
+        }
+    }
 }
 //# sourceMappingURL=authenticationManager.js.map

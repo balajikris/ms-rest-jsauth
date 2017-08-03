@@ -4,7 +4,7 @@
 import { authManager } from "./authConstants";
 
 const authContext = authManager.getAuthenticationContext();
-authContext.handleWindowCallback();
+authManager.handleWindowCallback();
 if (!authContext.getCachedUser()) {
   authContext.login();
 }

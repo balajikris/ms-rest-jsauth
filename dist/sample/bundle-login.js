@@ -128,6 +128,21 @@ class AuthenticationManager {
             });
         });
     }
+    /**
+     * A simple wrapper around adal-js' handleWindowCallback() method
+     * Handles redirection after login operation. Gets access token from url and saves token to the (local/session) storage
+     * or saves error in case unsuccessful login.
+     */
+    handleWindowCallback() {
+        this.authContext.handleWindowCallback();
+        const user = this.authContext.getCachedUser();
+        if (user && user.userName) {
+            document.write("login successful");
+        }
+        else {
+            document.write("Could not find the user. Either this method was called before login or login was not successful.");
+        }
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = AuthenticationManager;
 
@@ -1815,7 +1830,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 const authContext = __WEBPACK_IMPORTED_MODULE_0__authConstants__["a" /* authManager */].getAuthenticationContext();
-authContext.handleWindowCallback();
+__WEBPACK_IMPORTED_MODULE_0__authConstants__["a" /* authManager */].handleWindowCallback();
 if (!authContext.getCachedUser()) {
     authContext.login();
 }
@@ -1823,3 +1838,4 @@ if (!authContext.getCachedUser()) {
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle-login.js.map

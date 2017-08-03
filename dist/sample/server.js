@@ -36,6 +36,6 @@ server.listen(port, hostname, () => {
         `is the redirect/reply url for the Active Directory web application.`);
     console.log(`2. After successful authentication, please open "http://${hostname}:${port}/index.html" \n\t` +
         `or any other page that invokes your javascript code where the authenticated client needs to talk to Azure.`);
-    console.log(`3. Server is running at "http://${hostname}:${port}/" ...`);
+    console.log(`\n\n3. Server is running at "http://${hostname}:${port}/" ...`);
 });
 //# sourceMappingURL=server.js.map

@@ -22,4 +22,10 @@ export declare class AuthenticationManager {
      * - datalakeanalytics endpoint "https://<datalakeanalytics-account>.azuredatalakeanalytics.net/"
      */
     getToken(resource?: string): Promise<string>;
+    /**
+     * A simple wrapper around adal-js' handleWindowCallback() method
+     * Handles redirection after login operation. Gets access token from url and saves token to the (local/session) storage
+     * or saves error in case unsuccessful login.
+     */
+    handleWindowCallback(): void;
 }

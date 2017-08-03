@@ -5,6 +5,7 @@ module.exports = {
     'bundle-sample': path.join(__dirname, 'browser-sample.ts'),
     'bundle-login': path.join(__dirname, './browser-login.ts')
   },
+  devtool: 'source-map',
   output: {
     filename: "[name].js",
     path: path.join(__dirname, "../..", "dist", "sample"),
