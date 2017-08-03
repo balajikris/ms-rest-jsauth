@@ -5,10 +5,27 @@ export class AuthenticationManager {
     constructor(config) {
         this.authContext = new adal(config);
     }
-    login() {
-        this.authContext.login();
+    /**
+     * Provides the authentication context supported by adal-js.
+     */
+    getAuthenticationContext() {
+        return this.authContext;
     }
+    /**
+     * Gets the token for the specified resource provided the user is already logged in.
+     * @param resource This is the resource uri or token audience for which the token is needed.
+     * For example it can be:
+     * - resourcemanagement endpoint "https://management.azure.com/" (default).
+     * - management endpoint "https://management.core.windows.net/"
+     * - graph endpoint "https://graph.windows.net/",
+     * - sqlManagement endpoint "https://management.core.windows.net:8443/"
+     * - keyvault endpoint "https://<keyvault-account-name>.vault.azure.net/"
+     * - datalakestore endpoint "https://<datalakestore-account>.azuredatalakestore.net/"
+     * - datalakeanalytics endpoint "https://<datalakeanalytics-account>.azuredatalakeanalytics.net/"
+     */
     getToken(resource = "https://management.azure.com/") {
+        // Get Cached user needs to be called to ensure that the "this._user" property in adal-js is populated from the token cache.
+        this.authContext.getCachedUser();
         return new Promise((resolve, reject) => {
             // adal has inbuilt smarts to acquire token from the cache if not expired. Otherwise sends request to AAD to obtain a new token
             this.authContext.acquireToken(resource, (error, token) => {
@@ -19,11 +36,5 @@ export class AuthenticationManager {
             });
         });
     }
-    handleWindowCallback() {
-        this.authContext.handleWindowCallback();
-    }
-    getCachedUser() {
-        return this.authContext.getCachedUser();
-    }
 }
-//# sourceMappingURL=AuthenticationManager.js.map
+//# sourceMappingURL=authenticationManager.js.map

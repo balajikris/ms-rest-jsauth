@@ -61,7 +61,7 @@ var className =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -69,16 +69,20 @@ var className =
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_AuthenticationManager__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_authenticationManager__ = __webpack_require__(1);
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
 
 const config = {
-    clientId: "4e577d28-b99d-4b38-829a-1adc38b0fab5",
-    tenant: "72f988bf-86f1-41af-91ab-2d7cd011db47",
-    popUp: false
+    clientId: "<clientId of your app>",
+    tenant: "<tenantId of your app>",
+    popUp: false,
+    cacheLocation: "localStorage",
+    redirectUri: "http://localhost:8080/login.html"
 };
-const authManager = new __WEBPACK_IMPORTED_MODULE_0__lib_AuthenticationManager__["a" /* AuthenticationManager */](config);
-authManager.login();
+const authManager = new __WEBPACK_IMPORTED_MODULE_0__lib_authenticationManager__["a" /* AuthenticationManager */](config);
+/* harmony export (immutable) */ __webpack_exports__["a"] = authManager;
+
 
 
 /***/ }),
@@ -91,16 +95,32 @@ authManager.login();
 const adal = __webpack_require__(2);
 class AuthenticationManager {
     constructor(config) {
-        this.config = config;
         this.authContext = new adal(config);
     }
-    login() {
-        this.authContext.login();
+    /**
+     * Provides the authentication context supported by adal-js.
+     */
+    getAuthenticationContext() {
+        return this.authContext;
     }
-    getToken() {
+    /**
+     * Gets the token for the specified resource provided the user is already logged in.
+     * @param resource This is the resource uri or token audience for which the token is needed.
+     * For example it can be:
+     * - resourcemanagement endpoint "https://management.azure.com/" (default).
+     * - management endpoint "https://management.core.windows.net/"
+     * - graph endpoint "https://graph.windows.net/",
+     * - sqlManagement endpoint "https://management.core.windows.net:8443/"
+     * - keyvault endpoint "https://<keyvault-account-name>.vault.azure.net/"
+     * - datalakestore endpoint "https://<datalakestore-account>.azuredatalakestore.net/"
+     * - datalakeanalytics endpoint "https://<datalakeanalytics-account>.azuredatalakeanalytics.net/"
+     */
+    getToken(resource = "https://management.azure.com/") {
+        // Get Cached user needs to be called to ensure that the "this._user" property in adal-js is populated from the token cache.
+        this.authContext.getCachedUser();
         return new Promise((resolve, reject) => {
             // adal has inbuilt smarts to acquire token from the cache if not expired. Otherwise sends request to AAD to obtain a new token
-            this.authContext.acquireToken(this.config.resource, (error, token) => {
+            this.authContext.acquireToken(resource, (error, token) => {
                 if (error || !token) {
                     return reject(error);
                 }
@@ -1781,6 +1801,40 @@ var AuthenticationContext = (function () {
     return AuthenticationContext;
 
 }());
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__authConstants__ = __webpack_require__(0);
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+
+const subscriptionId = "<your-subscription-id>";
+__WEBPACK_IMPORTED_MODULE_0__authConstants__["a" /* authManager */].getToken().then((t) => {
+    let req = {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "accept-language": "en-US",
+            "x-ms-client-request-id": "9e932adc-7b1c-4d4b-aab6-984f2923bfa5",
+            "Content-Type": "application/json; charset=utf-8",
+            "authorization": `Bearer ${t}`
+        }
+    };
+    return fetch(`https://management.azure.com/subscriptions/${subscriptionId}/providers/Microsoft.Storage/storageAccounts?api-version=2015-06-15`, req);
+}).then((res) => {
+    return res.json();
+}).then((parsedResponse) => {
+    document.write(JSON.stringify(parsedResponse, null, 2));
+    console.dir(parsedResponse, { depth: null });
+}).catch((err) => {
+    document.write(JSON.stringify(err, null, 2));
+    console.dir(err, { depth: null });
+});
 
 
 /***/ })
