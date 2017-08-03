@@ -3,21 +3,38 @@
 
 const adal = require("adal-angular");
 
-import { IAuthenticationManager } from "./IAuthenticationManager";
-
-export class AuthenticationManager implements IAuthenticationManager {
-
+export class AuthenticationManager {
+  /**
+   * @prop {adal.Config} authContext - Authentication Contxt supported by adal-js
+   */
   private readonly authContext: adal.AuthenticationContext;
 
   public constructor(config: adal.Config) {
     this.authContext = new adal(config);
   }
 
-  login(): void {
-    this.authContext.login();
+  /**
+   * Provides the authentication context supported by adal-js.
+   */
+  getAuthenticationContext() {
+    return this.authContext;
   }
 
+  /**
+   * Gets the token for the specified resource provided the user is already logged in.
+   * @param resource This is the resource uri or token audience for which the token is needed. 
+   * For example it can be:
+   * - resourcemanagement endpoint "https://management.azure.com/" (default).
+   * - management endpoint "https://management.core.windows.net/"
+   * - graph endpoint "https://graph.windows.net/", 
+   * - sqlManagement endpoint "https://management.core.windows.net:8443/"
+   * - keyvault endpoint "https://<keyvault-account-name>.vault.azure.net/"
+   * - datalakestore endpoint "https://<datalakestore-account>.azuredatalakestore.net/"
+   * - datalakeanalytics endpoint "https://<datalakeanalytics-account>.azuredatalakeanalytics.net/"
+   */
   getToken(resource = "https://management.azure.com/"): Promise<string> {
+    // Get Cached user needs to be called to ensure that the "this._user" property in adal-js is populated from the token cache.
+    this.authContext.getCachedUser();
     return new Promise<string>((resolve, reject) => {
       // adal has inbuilt smarts to acquire token from the cache if not expired. Otherwise sends request to AAD to obtain a new token
       this.authContext.acquireToken(resource, (error, token) => {
@@ -27,11 +44,5 @@ export class AuthenticationManager implements IAuthenticationManager {
         return resolve(token);
       });
     });
-  }
-  handleWindowCallback() {
-    this.authContext.handleWindowCallback();
-  }
-  getCachedUser() {
-    return this.authContext.getCachedUser();
   }
 }

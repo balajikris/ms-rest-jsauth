@@ -21,14 +21,14 @@
   "typings": "./typings/AuthenticationManager.d.ts",
   "license": "MIT",
   "dependencies": {
-    "adal-angular": "^1.0.14",
+    "adal-angular": "^1.0.15",
     "@types/adal": "^1.0.27"
   },
   "devDependencies": {
     "@types/node": "^8.0.14",
     "ts-loader": "^2.0.3",
     "tslint": "^5.2.0",
-    "typescript": "^2.3.2",
+    "typescript": "^2.4.1",
     "webpack": "^3.3.0"
   },
   "homepage": "https://github.com/Azure/azure-sdk-for-node/",
@@ -40,8 +40,9 @@
     "url": "http://github.com/Azure/azure-sdk-for-node/issues"
   },
   "scripts": {
-    "test": "npm install && npm -s run-script unit",
-    "unit": "mocha -t 50000 dist/test",
-    "build": "webpack"
+    "build": "npm -s run-script tsc && npm -s run-script tsc-server && webpack --config ./sample/client/webpack.config.js",
+    "start": "node ./dist/sample/server.js",
+    "tsc": "tsc -p tsconfig.json",
+    "tsc-server": "tsc -p ./sample/server/tsconfig.server.json"
   }
 }

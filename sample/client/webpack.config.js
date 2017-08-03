@@ -1,8 +1,13 @@
+const path = require("path");
+
 module.exports = {
-  entry: './sample.ts',
+  entry: {
+    'bundle-sample': path.join(__dirname, 'browser-sample.ts'),
+    'bundle-login': path.join(__dirname, './browser-login.ts')
+  },
   output: {
-    filename: 'bundle.js',
-    path: __dirname + "/dist/sample/",
+    filename: "[name].js",
+    path: path.join(__dirname, "../..", "dist", "sample"),
     libraryTarget: 'var',
     library: 'className'
   },
