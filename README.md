@@ -5,6 +5,10 @@ If you are writing a web application in **Typescript**  or **Browser Javascript*
 
 The intent of this project is to bundle authentication functionality into Azure SDK libraries for Node/Javascript, provided by [AzureSDKTeam](https://www.npmjs.com/~windowsazure)
 
+### How to create an Azure Active Directory Application
+
+Please follow the steps provided over [here](./app-creation.md).
+
 ### How to run the sample
 
 1. Install dependencies - `npm install`.
