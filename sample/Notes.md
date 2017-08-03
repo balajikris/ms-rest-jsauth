@@ -65,5 +65,5 @@ Object.defineProperty.value @ bundle-login.js:64
   - During the token acquisition process, adal figures that you havent 2-FA ed and throws. But you won't ever see the 2FA screen if you have this extension!
 
 - **Resolution:**
-  - Remove the extension by following the instructions in a review left by Alex H on the extension in webstore.
+  - Remove the extension by following the instructions in a [review left by Alex H](https://chrome.google.com/webstore/detail/windows-10-accounts/ppnbnpeolgkicgegkbkbjmhlideopiji/reviews) on the extension in webstore.
 
